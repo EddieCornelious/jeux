@@ -4,9 +4,10 @@ export default class Cat {
   }
   name() {
     const name = this._name;
+    const trippy = 0;
 
     if (!name) {
-      return 1;
+      return 1 + trippy;
     }
 
     return name;
