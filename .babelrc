@@ -1,4 +1,13 @@
 {
-  "presets": ["env"],
-  "plugins": ["babel-plugin-add-module-exports", "babel-plugin-transform-es3-member-expression-literals", "babel-plugin-transform-es3-property-literals"]
+  "presets": [
+    ["env", {
+      "targets": {
+        "chrome": "10",
+        "safari": "6",
+        "IE": "8"
+      }
+    }]
+  ],
+  "plugins": [ ["transform-es2015-modules-commonjs", {loose: true}], ["babel-plugin-add-module-exports", {loose: true}], 
+  ["babel-plugin-transform-es3-member-expression-literals", {loose: true}], ["babel-plugin-transform-es3-property-literals", {loose : true}]]
 }
