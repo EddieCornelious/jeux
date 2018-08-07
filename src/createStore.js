@@ -19,13 +19,12 @@ function createStore(reducers, ...middleware) {
     if (chainResult === undefined) {
       return action;
     }
-    // run reducers
-    // snapshot of old state
-    state = Object.assign({}, state);
-    const newState = Object.assign({}, state);
 
-    state = updateStoreFromReducers(newState, reducers, reducerKeys, action);
-    state = newState;
+    let storeChanged = updateStoreFromReducers(state, reducers, reducerKeys, action);
+
+    if (storeChanged) {
+      state = Object.assign({}, state);
+    }
     subscribers ? subscribers.forEach(subscriber => subscriber(state)) : null;
     return chainResult;
   };
