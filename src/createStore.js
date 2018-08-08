@@ -30,7 +30,7 @@ function createStore(reducers, ...middleware) {
     if (storeChanged) {
       state = Object.assign({}, state);
     }
-    subscribers ? subscribers.forEach(subscriber => subscriber(state)) : null;
+    subscribers.length > 0 ? subscribers.forEach(subscriber => subscriber(state)) : null;
     return chainResult;
   }
 
