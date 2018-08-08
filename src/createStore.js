@@ -1,19 +1,24 @@
 import chainer from './chain.js';
 import updateStoreFromReducers from './updateStoreFromReducers.js';
+import isPlainObject from './isPlainObject.js';
 
 function createStore(reducers, ...middleware) {
-  let state, dispatch, getState, subscribe;
+  if (!isPlainObject(reducers)) {
+    throw new TypeError('Expected reducers to be a plain object');
+  }
+  let state = {};
   const subscribers = [];
-  const middlewareChain = chainer((action) => action, middleware.map(e => e(dispatch)(getState)));
   const reducerKeys = Object.keys(reducers);
 
-  state = updateStoreFromReducers(undefined, reducers, reducerKeys, undefined);
+  updateStoreFromReducers(state, reducers, reducerKeys, undefined);
 
-  getState = function getState() {
+  function getState() {
     return state;
-  };
+  }
 
-  dispatch = function dispatch(action) {
+  let middlewareChain;
+
+  function dispatch(action) {
     let chainResult = middlewareChain(action);
 
     if (chainResult === undefined) {
@@ -27,15 +32,15 @@ function createStore(reducers, ...middleware) {
     }
     subscribers ? subscribers.forEach(subscriber => subscriber(state)) : null;
     return chainResult;
-  };
+  }
 
-  subscribe = function subscribe(listener) {
+  function subscribe(listener) {
     subscribers.push(listener);
     return () => {
       subscribers.splice(subscribers.indexOf(listener, 1));
     };
-  };
-
+  }
+  middlewareChain = chainer((action) => action, middleware.map(e => e(dispatch)(getState)));
   return {
     getState,
     dispatch,
