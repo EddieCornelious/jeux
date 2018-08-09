@@ -1,5 +1,5 @@
 
-function updateStoreFromReducers(state = {}, reducers, reducerKeys, action) {
+function updateStoreFromReducers(state, reducers, reducerKeys, action) {
   const injectedAction = action || '$__DEFAULTACTION$__';
   let storeHasChanged = false;
 
