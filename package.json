@@ -1,8 +1,8 @@
 {
-  "name": "Rico",
+  "name": "rico",
   "version": "0.0.0",
   "description": "App Container",
-  "main": "lib/Rico.js",
+  "main": "lib/rico.js",
   "scripts": {
     "build": "rimraf -rf lib .nyc_output && webpack --env dev && webpack --env build && npm run test",
     "dev": "webpack --progress --colors --watch --env dev",
