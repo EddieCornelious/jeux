@@ -49,4 +49,29 @@ describe('createStore#subscribe', () => {
     });
     expect(pushOk).to.have.members(['ok', 'ok']);
   });
+  
+  it('should subscribe multiple listeners correctly', () => {
+    let pushOk = [];
+    const unSub1 = store.subscribe(newState => {
+      pushOk.push('L1');
+    });
+    const unSub2 = store.subscribe(newState => {
+      pushOk.push('L2');
+    });
+    store.dispatch({
+      type: 'INC',
+    });
+    expect(pushOk).to.have.ordered.members(['L1', 'L2']);
+    unSub2();
+    store.dispatch({
+      type: 'INC',
+    });
+    expect(pushOk).to.have.ordered.members(['L1', 'L2', "L1"]);
+    unSub1();
+    store.dispatch({
+      type: 'INC',
+    });
+    expect(pushOk).to.have.ordered.members(['L1', 'L2', "L1"]);
+    
+  });
 });

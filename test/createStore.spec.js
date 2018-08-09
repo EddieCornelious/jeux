@@ -27,9 +27,19 @@ describe('createStore', () => {
   it('should have proper store props', () => {
     expect(store).to.have.keys('dispatch', 'getState', 'subscribe');
   });
+  
+  it('each prop should be a function', () => {
+    expect(store.dispatch).to.be.a('function');
+    expect(store.getState).to.be.a('function');
+    expect(store.subscribe).to.be.a('function');
+  });
 
   it('should throw error when plain object is not given', () => {
     expect(() => createStore(0)).to.throw(TypeError);
+  });
+  
+  it('should throw error when reducer keys dont map to funcs', () => {
+    expect(() => createStore({name: 0}).dispatch()).to.throw(TypeError);
   });
 });
 
