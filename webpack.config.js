@@ -24,7 +24,7 @@ const config = {
   output: {
     path: __dirname + '/lib',
     filename: outputFile,
-    library: libraryName,
+    library: 'Jeux',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
