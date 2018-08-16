@@ -41,6 +41,7 @@ function createStore(reducers, ...middleware) {
     };
   }
   const middlewareInvokedWithArgs = middleware.map(middleware => middleware(dispatch)(getState));
+
   middlewareChain = chainer(action => action, middlewareInvokedWithArgs);
   return {
     getState,
