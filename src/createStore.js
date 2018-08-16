@@ -40,7 +40,8 @@ function createStore(reducers, ...middleware) {
       subscribers.splice(subscribers.indexOf(listener, 1));
     };
   }
-  middlewareChain = chainer((action) => action, middleware.map(e => e(dispatch)(getState)));
+  const middlewareInvokedWithArgs = middleware.map(middleware => middleware(dispatch)(getState));
+  middlewareChain = chainer(action => action, middlewareInvokedWithArgs);
   return {
     getState,
     dispatch,

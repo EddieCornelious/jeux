@@ -1,13 +1,13 @@
 
-var chainer = (starter, mw) => {
+const chainer = (starter, mw) => {
   const args = [starter, ...mw];
   const functions = [];
 
-  for (let i = 0; i < args.length; i++) {
+  for (let i = 0; i < args.length; i += 1) {
     functions[i] = args[i];
   }
 
-  return (action) => {
+  return action => {
     return functions.reduce((value, func) => {
       if (value === undefined) {
         return (() => undefined)();
