@@ -1,6 +1,7 @@
 import chainer from './chain.js';
 import updateStoreFromReducers from './updateStoreFromReducers.js';
 import isPlainObject from './isPlainObject.js';
+import notifySubscribers from './notifySubscribers.js';
 
 function createStore(reducers, ...middleware) {
   if (!isPlainObject(reducers)) {
@@ -28,9 +29,9 @@ function createStore(reducers, ...middleware) {
     let storeChanged = updateStoreFromReducers(state, reducers, reducerKeys, action);
 
     if (storeChanged) {
-      state = Object.assign({}, state);
+      state = {...state};
+      notifySubscribers(subscribers, state);
     }
-    subscribers.length > 0 ? subscribers.forEach(subscriber => subscriber(state)) : null;
     return chainResult;
   }
 
