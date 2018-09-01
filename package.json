@@ -8,7 +8,7 @@
     "dev": "webpack --progress --colors --watch --env dev",
     "test": "node_modules/.bin/nyc mocha --require babel-register --colors ./test/*.spec.js",
     "test:watch": "mocha --require babel-register --colors -w ./test/*.spec.js",
-    "pretty": "node_modules/.bin/prettier --single-quote --trailing-comma es5 --write test/*.spec.js"
+    "pretty": "node_modules/.bin/prettier --write test/*.spec.js && node_modules/.bin/prettier --write src/*"
   },
   "repository": {
     "type": "git",
