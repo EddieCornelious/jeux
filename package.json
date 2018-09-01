@@ -1,6 +1,6 @@
 {
   "name": "jeux",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "App Container",
   "main": "lib/jeux.js",
   "scripts": {
@@ -24,6 +24,7 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.51",
     "@babel/core": "^7.0.0-beta.51",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/preset-env": "^7.0.0-beta.51",
     "babel-eslint": "^8.0.3",
     "babel-loader": "^8.0.0-beta.4",
@@ -31,7 +32,6 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-plugin-transform-es3-member-expression-literals": "^6.22.0",
     "babel-plugin-transform-es3-property-literals": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^7.0.0-beta.3",
     "babel-register": "^7.0.0-beta.3",
     "chai": "^4.1.2",
