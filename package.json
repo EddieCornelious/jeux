@@ -8,7 +8,7 @@
     "dev": "webpack --progress --colors --watch --env dev",
     "test": "node_modules/.bin/nyc mocha --require babel-register --colors ./test/*.spec.js",
     "test:watch": "mocha --require babel-register --colors -w ./test/*.spec.js",
-    "pretty" : "node_modules/.bin/prettier --single-quote --trailing-comma es5 --write test/*.spec.js"
+    "pretty": "node_modules/.bin/prettier --single-quote --trailing-comma es5 --write test/*.spec.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-plugin-transform-es3-member-expression-literals": "^6.22.0",
     "babel-plugin-transform-es3-property-literals": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^7.0.0-beta.3",
     "babel-register": "^7.0.0-beta.3",
     "chai": "^4.1.2",
