@@ -1,4 +1,3 @@
-
 const chainer = (starter, mw) => {
   const args = [starter, ...mw];
   const functions = [];

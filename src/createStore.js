@@ -26,7 +26,12 @@ function createStore(reducers, ...middleware) {
       return action;
     }
 
-    let storeChanged = updateStoreFromReducers(state, reducers, reducerKeys, action);
+    let storeChanged = updateStoreFromReducers(
+      state,
+      reducers,
+      reducerKeys,
+      action
+    );
 
     if (storeChanged) {
       state = Object.assign({}, state);
@@ -41,7 +46,9 @@ function createStore(reducers, ...middleware) {
       subscribers.splice(subscribers.indexOf(listener, 1));
     };
   }
-  const middlewareInvokedWithArgs = middleware.map(middleware => middleware(dispatch)(getState));
+  const middlewareInvokedWithArgs = middleware.map(middleware =>
+    middleware(dispatch)(getState)
+  );
 
   middlewareChain = chainer(action => action, middlewareInvokedWithArgs);
   return {
@@ -49,7 +56,6 @@ function createStore(reducers, ...middleware) {
     dispatch,
     subscribe
   };
-
 }
 
 export default createStore;

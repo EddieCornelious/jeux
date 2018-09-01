@@ -1,4 +1,3 @@
-
 function updateStoreFromReducers(state, reducers, reducerKeys, action) {
   const injectedAction = action || '$__DEFAULTACTION$__';
   let storeHasChanged = false;
@@ -14,7 +13,9 @@ function updateStoreFromReducers(state, reducers, reducerKeys, action) {
     const reducerRes = reducerFunc(state[reducerKey], injectedAction);
 
     if (reducerRes === undefined) {
-      throw new TypeError('Reducer initial state cannot be undefined, try using a default arguments');
+      throw new TypeError(
+        'Reducer initial state cannot be undefined, try using a default arguments'
+      );
     }
 
     if (knownResult !== reducerRes) {
