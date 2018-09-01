@@ -1,7 +1,7 @@
 /* global describe, it, before */
 import chai from 'chai';
 import createStore from '../src/createStore.js';
-import { counterReducer, listReducer } from './testData.js';
+import {counterReducer, listReducer} from './testData.js';
 
 chai.expect();
 
@@ -11,7 +11,7 @@ let store;
 beforeEach(() => {
   store = createStore({
     counter: counterReducer,
-    list: listReducer,
+    list: listReducer
   });
 });
 
@@ -27,7 +27,7 @@ describe('createStore', () => {
   it('should have proper store props', () => {
     expect(store).to.have.keys('dispatch', 'getState', 'subscribe');
   });
-  
+
   it('each prop should be a function', () => {
     expect(store.dispatch).to.be.a('function');
     expect(store.getState).to.be.a('function');
@@ -37,7 +37,7 @@ describe('createStore', () => {
   it('should throw error when plain object is not given', () => {
     expect(() => createStore(0)).to.throw(TypeError);
   });
-  
+
   it('should throw error when reducer keys dont map to funcs', () => {
     expect(() => createStore({name: 0}).dispatch()).to.throw(TypeError);
   });
@@ -58,13 +58,13 @@ describe('createStore with middleware', () => {
     store = createStore(
       {
         counter: counterReducer,
-        list: listReducer,
+        list: listReducer
       },
       saveActionNum,
       saveActionNum
     );
     store.dispatch({
-      type: 'INC',
+      type: 'INC'
     });
     expect(actions).to.be.equal(2);
   });
@@ -87,13 +87,13 @@ describe('createStore with middleware', () => {
     store = createStore(
       {
         counter: counterReducer,
-        list: listReducer,
+        list: listReducer
       },
       saveActionNum,
       saveActionNum
     );
     store.dispatch({
-      type: 'INC',
+      type: 'INC'
     });
     expect(actions).to.be.equal(0);
   });
@@ -107,11 +107,11 @@ describe('createStore with middleware', () => {
           actions.push(action.type);
           if (action.type === 'RESTART') {
             dispatch({
-              type: 'NORMAL',
+              type: 'NORMAL'
             });
           } else if (action.type === 'NORMAL') {
             store.dispatch({
-              type: 'JUICE',
+              type: 'JUICE'
             });
           }
 
@@ -123,12 +123,12 @@ describe('createStore with middleware', () => {
     store = createStore(
       {
         counter: counterReducer,
-        list: listReducer,
+        list: listReducer
       },
       saveActionNum
     );
     store.dispatch({
-      type: 'RESTART',
+      type: 'RESTART'
     });
 
     expect(actions).to.have.ordered.members(['RESTART', 'NORMAL', 'JUICE']);
@@ -149,18 +149,18 @@ describe('createStore with middleware', () => {
     store = createStore(
       {
         counter: counterReducer,
-        list: listReducer,
+        list: listReducer
       },
       saveActionNum
     );
     store.dispatch({
-      type: 'INC',
+      type: 'INC'
     });
     store.dispatch({
-      type: 'INC',
+      type: 'INC'
     });
     store.dispatch({
-      type: 'INC',
+      type: 'INC'
     });
     expect(actions).to.have.ordered.members([0, 1, 2]);
   });
