@@ -29,7 +29,7 @@ function createStore(reducers, ...middleware) {
     let storeChanged = updateStoreFromReducers(state, reducers, reducerKeys, action);
 
     if (storeChanged) {
-      state = {...state};
+      state = Object.assign({}, state);
       notifySubscribers(subscribers, state);
     }
     return chainResult;
