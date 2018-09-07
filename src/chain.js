@@ -1,5 +1,5 @@
-const chainer = (starter, mw) => {
-  const args = [starter, ...mw];
+const chainer = (starter, middleware) => {
+  const args = [starter, ...middleware];
   const functions = [];
 
   for (let i = 0; i < args.length; i += 1) {
