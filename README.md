@@ -15,6 +15,13 @@ The store is nothing but a js object that holds your application state
 
 Reducers are functions that accept the current slice of the state that the reducer responds to and the current action being dispatched.
 
+## Middleware
+
+Middleware are functions that are called before an action gets to any reducers.
+
+Normal flow  --- dispatch action --- reducers --- updated state
+Flow with middleware  --- dispatch action --- passes action through middlewares --- reducers --- updated state
+
 ## createStore
 
 CreateStore accepts the reducer object as a first arg. This is a mapping of keys to functions. 
