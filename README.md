@@ -3,10 +3,46 @@
 * createStore(reducerObject, middleware1...middlewarenN);
 
 # 2nd-level API
-* dispatch()
+* dispatch(action)
 * subscribe(callback(newState))
 * getState()
 
+## Store
+
+The store is nothing but a js object that holds your application state
+
+## Reducers
+
+Reducers are functions that accept the current slice of the state that the reducer responds to and the current action being dispatched.
+
+## createStore
+
+CreateStore accepts the reducer object as a first arg. This is a mapping of keys to functions. 
+
+See Examples below for more details.
+
+## dispatch
+
+This method is used to dispatch actions to the store and the store takes the actions runs it through the reducers and updates
+the state accordingly.
+
+most actions look like this
+```javascript
+{
+    
+    type : "FETCH_USER",
+    extraField : "someData"
+}
+```
+
+## subscribe
+
+This method is to be used if you would like to know when changes to the store have occurred. Ths method accepts
+a callback function that is invoked when the store changes.
+
+## getState
+
+The methods returns the current state of your application
 
 ## Examples
 
