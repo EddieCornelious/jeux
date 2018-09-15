@@ -7,9 +7,13 @@
 * subscribe(callback(newState))
 * getState()
 
+## State
+
+A plain js object that describes the state of your application
+
 ## Store
 
-The store is nothing but a js object that holds your application state
+The store is nothing but a js object that gives you access to methods that mutate your app state
 
 ## Reducers
 
@@ -19,18 +23,22 @@ Reducers are functions that accept the current slice of the state that the reduc
 
 Middleware are functions that are called before an action gets to any reducers.
 
-Normal flow  --- dispatch action --- reducers --- updated state
-Flow with middleware  --- dispatch action --- passes action through middlewares --- reducers --- updated state
+## ReducerObject
+
+A plain js object that is used to map keys to reducer functions. See examples below.
+
+### Normal flow  --- dispatch action --- reducers --- update state
+### Flow with middleware  --- dispatch action --- passes action through middleware(s) --- reducers --- update state
 
 ## createStore
 
-CreateStore accepts the reducer object as a first arg. This is a mapping of keys to functions. 
+CreateStore accepts the reducer object as a first arg. And middleware functions as 2...n args
 
 See Examples below for more details.
 
 ## dispatch
 
-This method is used to dispatch actions to the store and the store takes the actions runs it through the reducers and updates
+This method is used to dispatch actions to the reducers which take the action and updates
 the state accordingly.
 
 most actions look like this
