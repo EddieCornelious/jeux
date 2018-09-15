@@ -1,5 +1,5 @@
 import chainer from './chain.js';
-import updateStoreFromReducers from './updateStoreFromReducers.js';
+import updateStateFromReducers from './updateStateFromReducers.js';
 import isPlainObject from './isPlainObject.js';
 import notifySubscribers from './notifySubscribers.js';
 
@@ -11,7 +11,7 @@ function createStore(reducers, ...middleware) {
   const subscribers = [];
   const reducerKeys = Object.keys(reducers);
 
-  updateStoreFromReducers(state, reducers, reducerKeys, undefined);
+  updateStateFromReducers(state, reducers, reducerKeys, undefined);
 
   function getState() {
     return state;
@@ -20,20 +20,20 @@ function createStore(reducers, ...middleware) {
   let middlewareChain;
 
   function dispatch(action) {
-    let chainResult = middlewareChain(action);
+    const chainResult = middlewareChain(action);
 
     if (chainResult === undefined) {
       return action;
     }
 
-    let storeChanged = updateStoreFromReducers(
+    const stateHasChanged = updateStateFromReducers(
       state,
       reducers,
       reducerKeys,
       action
     );
 
-    if (storeChanged) {
+    if (stateHasChanged) {
       state = Object.assign({}, state);
       notifySubscribers(subscribers, state);
     }
