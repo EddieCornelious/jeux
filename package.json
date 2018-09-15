@@ -1,6 +1,6 @@
 {
   "name": "jeux",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Javascript state container",
   "main": "lib/jeux.js",
   "scripts": {
